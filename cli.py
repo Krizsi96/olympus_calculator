@@ -16,7 +16,8 @@ def main():
     car.cost = cost_calculation.calculate_monthly_costs(car, fuel_price)
     car.depreciated_value = cost_calculation.calculate_depreciated_value(car)
 
-    console_output(car)
+    print_calculation_parameters(cost_calculation)
+    print_cost(car)
 
 
 def user_car_input() -> Car:
@@ -45,7 +46,7 @@ def user_fuel_price_input() -> float:
     return float(typer.prompt("What is the fuel price? [€/l]"))
 
 
-def console_output(car_data: Car):
+def print_cost(car_data: Car):
     table = Table("Cost Item", "€/month")
     table.add_row("Depreciation", f"{car_data.cost.monthly_depreciation_cost:.2f}")
     table.add_row("Fuel", f"{car_data.cost.monthly_fuel_cost:.2f}")
@@ -62,6 +63,17 @@ def console_output(car_data: Car):
     print(
         f"The monthly cost of the car is [cyan]{car_data.cost.total_monthly_cost:.2f} €/month[/cyan]"
     )
+
+
+def print_calculation_parameters(cost_calculation: CarCostCalculator):
+    yearly_depreciation = cost_calculation.YEAR_DEPRECIATION * 100
+    km_depreciation = cost_calculation.KM_DEPRECIATION * 100
+    maintenance_cost = cost_calculation.MAINTENANCE_COST
+
+    print("\nCalculation parameters:")
+    print(f"Yearly depreciation: [cyan]{yearly_depreciation} %[/cyan]")
+    print(f"Km depreciation: [cyan]{km_depreciation} % / 10000 km[/cyan]")
+    print(f"Maintenance cost: [cyan]{maintenance_cost} € / 10000 km[/cyan]")
 
 
 if __name__ == "__main__":
