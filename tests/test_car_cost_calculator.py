@@ -1,9 +1,5 @@
 import pytest
-from olympus_calculator.car import (
-    calculate_car_depreciation,
-    calculate_fuel_cost,
-    calculate_maintenance_cost,
-)
+from olympus_calculator.car_cost_calculator import CarCostCalculator
 
 
 def test_car_depreciation_0_years_0_mileage():
@@ -11,9 +7,12 @@ def test_car_depreciation_0_years_0_mileage():
     car_price = 100
     driven_years = 0
     driven_km = 0
+    calculator = CarCostCalculator()
 
     # When
-    depriciated_value = calculate_car_depreciation(car_price, driven_years, driven_km)
+    depriciated_value = calculator.calculate_car_depreciation(
+        car_price, driven_years, driven_km
+    )
 
     # Then
     assert depriciated_value == 100
@@ -33,9 +32,12 @@ def test_car_depreciation_for_age(
     driven_km = 0
     car_price = car_price_parameter
     driven_years = driven_years_parameter
+    calculator = CarCostCalculator()
 
     # When
-    depriciated_value = calculate_car_depreciation(car_price, driven_years, driven_km)
+    depriciated_value = calculator.calculate_car_depreciation(
+        car_price, driven_years, driven_km
+    )
 
     # Then
     assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
@@ -55,9 +57,12 @@ def test_car_depreciation_for_mileage(
     driven_years = 0
     car_price = car_price_parameter
     driven_km = driven_km_parameter
+    calculator = CarCostCalculator()
 
     # When
-    depriciated_value = calculate_car_depreciation(car_price, driven_years, driven_km)
+    depriciated_value = calculator.calculate_car_depreciation(
+        car_price, driven_years, driven_km
+    )
 
     # Then
     assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
@@ -74,9 +79,12 @@ def test_car_depreciation_for_age_and_mileage(
     car_price = car_price_parameter
     driven_years = driven_years_parameter
     driven_km = driven_km_parameter
+    calculator = CarCostCalculator()
 
     # When
-    depriciated_value = calculate_car_depreciation(car_price, driven_years, driven_km)
+    depriciated_value = calculator.calculate_car_depreciation(
+        car_price, driven_years, driven_km
+    )
 
     # Then
     assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
@@ -96,9 +104,10 @@ def test_fuel_cost_calculation(
     driven_km = driven_km_parameter
     fuel_consumption = fuel_consumption_parameter
     fuel_price = fuel_price_parameter
+    calculator = CarCostCalculator()
 
     # When
-    fuel_cost = calculate_fuel_cost(driven_km, fuel_consumption, fuel_price)
+    fuel_cost = calculator.calculate_fuel_cost(driven_km, fuel_consumption, fuel_price)
 
     # Then
     assert fuel_cost == pytest.approx(expected_value, rel=1e-2)
@@ -113,9 +122,10 @@ def test_calculate_maintenance_cost(driven_km_parameter, expected_value):
     """
     # Given
     driven_km = driven_km_parameter
+    calculator = CarCostCalculator()
 
     # When
-    maintenance_cost = calculate_maintenance_cost(driven_km)
+    maintenance_cost = calculator.calculate_maintenance_cost(driven_km)
 
     # Then
     assert maintenance_cost == expected_value
