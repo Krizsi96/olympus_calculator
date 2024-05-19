@@ -33,8 +33,8 @@ def user_car_input() -> Car:
     fuel_consumption = float(
         Prompt.ask("What is the fuel consumption of the car? [l/100km]")
     )
-    road_tax = float(Prompt.ask("What is the road tax? [€/year]"))
-    insurance = float(Prompt.ask("What is the insurance cost? [€/year]"))
+    road_tax = float(Prompt.ask("How much is the road tax? [€/year]"))
+    insurance = float(Prompt.ask("How much is the insurance? [€/year]"))
 
     return Car(
         initial_value=price,
@@ -47,7 +47,7 @@ def user_car_input() -> Car:
 
 
 def user_fuel_price_input() -> float:
-    return float(typer.prompt("What is the fuel price? [€/l]"))
+    return float(typer.prompt("How much is the fuel price? [€/l]"))
 
 
 def print_cost(car_data: Car):
