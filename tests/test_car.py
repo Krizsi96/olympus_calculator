@@ -1,5 +1,5 @@
 import pytest
-from olympus_calculator.car import calculate_car_depreciation
+from olympus_calculator.car import calculate_car_depreciation, calculate_fuel_cost
 
 
 def test_car_depreciation_0_years_0_mileage():
@@ -76,3 +76,25 @@ def test_car_depreciation_for_age_and_mileage(
 
     # Then
     assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
+
+
+@pytest.mark.parametrize(
+    "driven_km_parameter, fuel_consumption_parameter, fuel_price_parameter, expected_value",
+    [(100, 5, 1.5, 7.5), (200, 5, 1.5, 15), (100, 10, 1.5, 15), (100, 5, 2, 10)],
+)
+def test_fuel_cost_calculation(
+    driven_km_parameter,
+    fuel_consumption_parameter,
+    fuel_price_parameter,
+    expected_value,
+):
+    # Given
+    driven_km = driven_km_parameter
+    fuel_consumption = fuel_consumption_parameter
+    fuel_price = fuel_price_parameter
+
+    # When
+    fuel_cost = calculate_fuel_cost(driven_km, fuel_consumption, fuel_price)
+
+    # Then
+    assert fuel_cost == pytest.approx(expected_value, rel=1e-2)

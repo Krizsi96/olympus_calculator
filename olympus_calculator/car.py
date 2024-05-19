@@ -12,3 +12,9 @@ def calculate_car_depreciation(
 
     total_depreciation = depreciation_from_years + depreciation_from_kms
     return initial_price - total_depreciation
+
+
+def calculate_fuel_cost(
+    driven_kms: int, fuel_consumption: float, fuel_price: float
+) -> float:
+    return (driven_kms / 100) * fuel_consumption * fuel_price
