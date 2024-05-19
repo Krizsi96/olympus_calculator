@@ -4,11 +4,14 @@ import typer
 from rich import print
 from rich.table import Table
 from rich.console import Console
+from rich.prompt import Prompt
 
 console = Console()
 
 
 def main():
+    print("⭐Welcome to the car cost calculator!⭐\n")
+
     cost_calculation = CarCostCalculator()
     car = user_car_input()
     fuel_price = user_fuel_price_input()
@@ -21,16 +24,17 @@ def main():
 
 
 def user_car_input() -> Car:
-    price = float(typer.prompt("What is the price of the car? [€]"))
-    years = int(typer.prompt("How many years you expect to drive the car?"))
+    print("🔴Please provide the following information about the car:")
+    price = float(Prompt.ask("What is the price of the car? [€]"))
+    years = int(Prompt.ask("How many years you expect to drive the car?"))
     km_in_a_year = int(
-        typer.prompt("How many kilometers you expect to drive the car in one year?")
+        Prompt.ask("How many kilometers you expect to drive the car in one year?")
     )
     fuel_consumption = float(
-        typer.prompt("What is the fuel consumption of the car? [l/100km]")
+        Prompt.ask("What is the fuel consumption of the car? [l/100km]")
     )
-    road_tax = float(typer.prompt("What is the road tax? [€/year]"))
-    insurance = float(typer.prompt("What is the insurance cost? [€/year]"))
+    road_tax = float(Prompt.ask("What is the road tax? [€/year]"))
+    insurance = float(Prompt.ask("What is the insurance cost? [€/year]"))
 
     return Car(
         initial_value=price,
@@ -47,6 +51,8 @@ def user_fuel_price_input() -> float:
 
 
 def print_cost(car_data: Car):
+    print("\n🟢Monthly cost of the car:")
+
     table = Table("Cost Item", "€/month")
     table.add_row("Depreciation", f"{car_data.cost.monthly_depreciation_cost:.2f}")
     table.add_row("Fuel", f"{car_data.cost.monthly_fuel_cost:.2f}")
@@ -54,7 +60,6 @@ def print_cost(car_data: Car):
     table.add_row("Road Tax", f"{car_data.cost.monthly_road_tax:.2f}")
     table.add_row("Insurance", f"{car_data.cost.monthly_insurance_cost:.2f}")
     table.add_row("Total", f"{car_data.cost.total_monthly_cost:.2f}")
-    console.print("\nMonthly cost of the car:")
     console.print(table)
 
     print(
@@ -70,7 +75,7 @@ def print_calculation_parameters(cost_calculation: CarCostCalculator):
     km_depreciation = cost_calculation.KM_DEPRECIATION * 100
     maintenance_cost = cost_calculation.MAINTENANCE_COST
 
-    print("\nCalculation parameters:")
+    print("\n🟡Calculation parameters:")
     print(f"Yearly depreciation: [cyan]{yearly_depreciation} %[/cyan]")
     print(f"Km depreciation: [cyan]{km_depreciation} % / 10000 km[/cyan]")
     print(f"Maintenance cost: [cyan]{maintenance_cost} € / 10000 km[/cyan]")
