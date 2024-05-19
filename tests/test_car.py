@@ -1,5 +1,9 @@
 import pytest
-from olympus_calculator.car import calculate_car_depreciation, calculate_fuel_cost
+from olympus_calculator.car import (
+    calculate_car_depreciation,
+    calculate_fuel_cost,
+    calculate_maintenance_cost,
+)
 
 
 def test_car_depreciation_0_years_0_mileage():
@@ -98,3 +102,20 @@ def test_fuel_cost_calculation(
 
     # Then
     assert fuel_cost == pytest.approx(expected_value, rel=1e-2)
+
+
+@pytest.mark.parametrize(
+    "driven_km_parameter, expected_value", [(10000, 458), (20000, 916), (50000, 2290)]
+)
+def test_calculate_maintenance_cost(driven_km_parameter, expected_value):
+    """
+    maintenance cost is 458€ per 10000 km
+    """
+    # Given
+    driven_km = driven_km_parameter
+
+    # When
+    maintenance_cost = calculate_maintenance_cost(driven_km)
+
+    # Then
+    assert maintenance_cost == expected_value

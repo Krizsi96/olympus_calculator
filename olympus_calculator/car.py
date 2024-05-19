@@ -18,3 +18,9 @@ def calculate_fuel_cost(
     driven_kms: int, fuel_consumption: float, fuel_price: float
 ) -> float:
     return (driven_kms / 100) * fuel_consumption * fuel_price
+
+
+def calculate_maintenance_cost(driven_kms: int) -> float:
+    # maintenance cost is 458€ per 10000 km
+    MAINTENANCE_COST = 458  # € per 10000 km
+    return (driven_kms / 10000) * MAINTENANCE_COST
