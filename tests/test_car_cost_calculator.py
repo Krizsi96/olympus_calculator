@@ -155,3 +155,22 @@ def test_monthly_cost_calculation():
     assert monthly_cost.monthly_maintenance_cost == pytest.approx(190.83, rel=1e-2)
     assert monthly_cost.monthly_road_tax == pytest.approx(10, rel=1e-2)
     assert monthly_cost.monthly_insurance_cost == pytest.approx(10, rel=1e-2)
+
+
+def test_depreciated_value_calculation():
+    # Given
+    calculator = CarCostCalculator()
+    car = Car(
+        initial_value=100,
+        driven_years=1,
+        driven_km=50000,
+        fuel_consumption=0,
+        road_tax=0,
+        insurance_cost=0,
+    )
+
+    # When
+    depriciated_value = calculator.calculate_depreciated_value(car)
+
+    # Then
+    assert depriciated_value == pytest.approx(80, rel=1e-2)

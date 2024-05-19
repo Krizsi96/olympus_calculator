@@ -28,6 +28,12 @@ class CarCostCalculator:
         )
         return monthly_costs
 
+    def calculate_depreciated_value(self, car: Car) -> float:
+        depreciation = self.calculate_car_depreciation(
+            car.initial_value, car.driven_years, car.driven_km
+        )
+        return car.initial_value - depreciation
+
     def calculate_car_depreciation(
         self, initial_price: float, driven_years: int, driven_kms: int
     ) -> float:
