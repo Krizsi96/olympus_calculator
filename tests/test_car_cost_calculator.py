@@ -141,8 +141,8 @@ def test_monthly_cost_calculation():
         driven_years=1,
         driven_km=50000,
         fuel_consumption=5,
-        road_tax=120,
-        insurance_cost=120,
+        road_tax_per_year=120,
+        insurance_cost_per_year=120,
     )
     fuel_price = 1.5
 
@@ -165,8 +165,8 @@ def test_depreciated_value_calculation():
         driven_years=1,
         driven_km=50000,
         fuel_consumption=0,
-        road_tax=0,
-        insurance_cost=0,
+        road_tax_per_year=0,
+        insurance_cost_per_year=0,
     )
 
     # When

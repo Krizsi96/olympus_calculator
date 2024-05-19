@@ -23,8 +23,8 @@ class CarCostCalculator:
             monthly_depreciation_cost=overall_depreciation / number_of_months,
             monthly_fuel_cost=overall_fuel_cost / number_of_months,
             monthly_maintenance_cost=overall_maintenance_cost / number_of_months,
-            monthly_road_tax=car.road_tax / 12,
-            monthly_insurance_cost=car.insurance_cost / 12,
+            monthly_road_tax=car.road_tax_per_year / 12,
+            monthly_insurance_cost=car.insurance_cost_per_year / 12,
         )
         return monthly_costs
 
