@@ -14,7 +14,7 @@ class CarCostCalculator:
         depreciation_from_kms = initial_price * (1 - km_depreciation_factor)
 
         total_depreciation = depreciation_from_years + depreciation_from_kms
-        return initial_price - total_depreciation
+        return total_depreciation
 
     def calculate_fuel_cost(
         self, driven_kms: int, fuel_consumption: float, fuel_price: float

@@ -10,17 +10,17 @@ def test_car_depreciation_0_years_0_mileage():
     calculator = CarCostCalculator()
 
     # When
-    depriciated_value = calculator.calculate_car_depreciation(
+    depriciation = calculator.calculate_car_depreciation(
         car_price, driven_years, driven_km
     )
 
     # Then
-    assert depriciated_value == 100
+    assert depriciation == 0
 
 
 @pytest.mark.parametrize(
     "car_price_parameter, driven_years_parameter, expected_value",
-    [(100, 1, 90), (100, 2, 81), (100, 3, 72.9)],
+    [(100, 1, 10), (100, 2, 19), (100, 3, 27.1)],
 )
 def test_car_depreciation_for_age(
     car_price_parameter, driven_years_parameter, expected_value
@@ -45,7 +45,7 @@ def test_car_depreciation_for_age(
 
 @pytest.mark.parametrize(
     "car_price_parameter, driven_km_parameter, expected_value",
-    [(100, 50000, 90), (100, 100000, 81), (100, 150000, 72.9)],
+    [(100, 50000, 10), (100, 100000, 19), (100, 150000, 27.1)],
 )
 def test_car_depreciation_for_mileage(
     car_price_parameter, driven_km_parameter, expected_value
@@ -70,7 +70,7 @@ def test_car_depreciation_for_mileage(
 
 @pytest.mark.parametrize(
     "car_price_parameter, driven_years_parameter, driven_km_parameter, expected_value",
-    [(100, 1, 50000, 80), (100, 5, 50000, 49.05), (100, 5, 100000, 40.05)],
+    [(100, 1, 50000, 20), (100, 5, 50000, 50.95), (100, 5, 100000, 59.95)],
 )
 def test_car_depreciation_for_age_and_mileage(
     car_price_parameter, driven_years_parameter, driven_km_parameter, expected_value
