@@ -57,3 +57,22 @@ def test_car_depreciation_for_mileage(
 
     # Then
     assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
+
+
+@pytest.mark.parametrize(
+    "car_price_parameter, driven_years_parameter, driven_km_parameter, expected_value",
+    [(100, 1, 50000, 80), (100, 5, 50000, 49.05), (100, 5, 100000, 40.05)],
+)
+def test_car_depreciation_for_age_and_mileage(
+    car_price_parameter, driven_years_parameter, driven_km_parameter, expected_value
+):
+    # Given
+    car_price = car_price_parameter
+    driven_years = driven_years_parameter
+    driven_km = driven_km_parameter
+
+    # When
+    depriciated_value = calculate_car_depreciation(car_price, driven_years, driven_km)
+
+    # Then
+    assert depriciated_value == pytest.approx(expected_value, rel=1e-2)
