@@ -1,5 +1,6 @@
 from olympus_calculator.car import calculate_car_depreciation
 import typer
+from rich import print
 
 
 def main():
@@ -13,10 +14,10 @@ def main():
     depriciated_value = calculate_car_depreciation(price, years, km)
     monthly_cost = (price - depriciated_value) / (years * 12)
 
-    typer.echo(
-        f"\nAfter {years} years and {km} km the car will be worth: {depriciated_value:.0f} €"
+    print(
+        f"\nAfter [green]{years}[/green] years and [green]{km}[/green] km the car will be worth: [cyan]{depriciated_value:.0f} €[/cyan]"
     )
-    typer.echo(f"The monthly cost of the car is {monthly_cost:.2f} €/month")
+    print(f"The monthly cost of the car is [cyan]{monthly_cost:.2f} €/month[/cyan]")
 
 
 if __name__ == "__main__":
