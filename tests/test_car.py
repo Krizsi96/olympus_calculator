@@ -39,13 +39,13 @@ def test_car_depreciation_for_age(
 
 @pytest.mark.parametrize(
     "car_price_parameter, driven_km_parameter, expected_value",
-    [(100, 50000, 85), (100, 100000, 72.25), (100, 150000, 61.41)],
+    [(100, 50000, 90), (100, 100000, 81), (100, 150000, 72.9)],
 )
 def test_car_depreciation_for_mileage(
     car_price_parameter, driven_km_parameter, expected_value
 ):
     """
-    the car's value should be reduced by 15% for each 50000 km driven
+    the car's value should be reduced by 10% for each 50000 km driven
     """
     # Given
     driven_years = 0
