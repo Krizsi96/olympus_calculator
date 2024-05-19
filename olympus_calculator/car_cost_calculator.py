@@ -1,8 +1,32 @@
+from .car import Car
+from .car_cost import CarMonthlyCosts
+
+
 class CarCostCalculator:
     def __init__(self):
         self.YEAR_DEPRECIATION = 0.1  # every year
         self.KM_DEPRECIATION = 0.021  # every 10000 km
         self.MAINTENANCE_COST = 458  # € per 10000 km
+
+    def calculate_monthly_costs(self, car: Car, fuel_price: float) -> CarMonthlyCosts:
+        overall_depreciation = self.calculate_car_depreciation(
+            car.initial_value, car.driven_years, car.driven_km
+        )
+        overall_fuel_cost = self.calculate_fuel_cost(
+            car.driven_km, car.fuel_consumption, fuel_price
+        )
+        overall_maintenance_cost = self.calculate_maintenance_cost(car.driven_km)
+
+        number_of_months = car.driven_years * 12
+
+        monthly_costs = CarMonthlyCosts(
+            monthly_depreciation_cost=overall_depreciation / number_of_months,
+            monthly_fuel_cost=overall_fuel_cost / number_of_months,
+            monthly_maintenance_cost=overall_maintenance_cost / number_of_months,
+            monthly_road_tax=car.road_tax / 12,
+            monthly_insurance_cost=car.insurance_cost / 12,
+        )
+        return monthly_costs
 
     def calculate_car_depreciation(
         self, initial_price: float, driven_years: int, driven_kms: int

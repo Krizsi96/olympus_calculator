@@ -1,5 +1,7 @@
 import pytest
 from olympus_calculator.car_cost_calculator import CarCostCalculator
+from olympus_calculator.car import Car
+from olympus_calculator.car_cost import CarMonthlyCosts
 
 
 def test_car_depreciation_0_years_0_mileage():
@@ -129,3 +131,27 @@ def test_calculate_maintenance_cost(driven_km_parameter, expected_value):
 
     # Then
     assert maintenance_cost == expected_value
+
+
+def test_monthly_cost_calculation():
+    # Given
+    calculator = CarCostCalculator()
+    car = Car(
+        initial_value=100,
+        driven_years=1,
+        driven_km=50000,
+        fuel_consumption=5,
+        road_tax=120,
+        insurance_cost=120,
+    )
+    fuel_price = 1.5
+
+    # When
+    monthly_cost = calculator.calculate_monthly_costs(car, fuel_price)
+
+    # Then
+    assert monthly_cost.monthly_depreciation_cost == pytest.approx(1.66, rel=1e-2)
+    assert monthly_cost.monthly_fuel_cost == pytest.approx(312.5, rel=1e-2)
+    assert monthly_cost.monthly_maintenance_cost == pytest.approx(190.83, rel=1e-2)
+    assert monthly_cost.monthly_road_tax == pytest.approx(10, rel=1e-2)
+    assert monthly_cost.monthly_insurance_cost == pytest.approx(10, rel=1e-2)
