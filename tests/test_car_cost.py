@@ -1,5 +1,5 @@
 import pytest
-from olympus_calculator.car_cost import CarMonthlyCosts
+from olympus_calculator.car_monthly_cost import CarMonthlyCosts
 
 
 def test_total_monthly_cost_is_calculated():

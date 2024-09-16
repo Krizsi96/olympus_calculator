@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from .car_cost import CarMonthlyCosts
+from olympus_calculator.car_monthly_cost import CarMonthlyCosts
 
 
 @dataclass

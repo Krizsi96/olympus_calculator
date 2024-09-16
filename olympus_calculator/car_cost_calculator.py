@@ -1,5 +1,5 @@
-from .car import Car
-from .car_cost import CarMonthlyCosts
+from olympus_calculator.car import Car
+from olympus_calculator.car_monthly_cost import CarMonthlyCosts
 
 
 class CarCostCalculator:

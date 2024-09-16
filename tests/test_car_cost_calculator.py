@@ -1,7 +1,7 @@
 import pytest
 from olympus_calculator.car_cost_calculator import CarCostCalculator
 from olympus_calculator.car import Car
-from olympus_calculator.car_cost import CarMonthlyCosts
+from olympus_calculator.car_monthly_cost import CarMonthlyCosts
 
 
 def test_car_depreciation_0_years_0_mileage():

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "olympus-calculator"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Kristof Kovacs <kristof.kovacs1996@gmail.com>"]
 readme = "README.md"
